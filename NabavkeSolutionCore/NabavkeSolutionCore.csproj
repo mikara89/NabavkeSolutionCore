@@ -72,7 +72,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Programing_CSharp\CirToLat_NetStandard2\CirToLat_NetStandard2\CirToLat_NetStandard2.csproj" />
+    <ProjectReference Include="..\..\..\CirToLat_NetStandard2\CirToLat_NetStandard2\CirToLat_NetStandard2.csproj" />
     <ProjectReference Include="..\NabavkeSolutionCore.Data\NabavkeSolutionCore.Data.csproj" />
   </ItemGroup>
 
