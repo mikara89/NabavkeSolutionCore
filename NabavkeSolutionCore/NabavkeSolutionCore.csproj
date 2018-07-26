@@ -1,0 +1,109 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <UserSecretsId>55d3da57-557f-4906-9e04-b3615a6cb9e1</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Compile Remove="ClientApp\app\components\backup\**" />
+    <Compile Remove="ClientApp\app\components\counter\**" />
+    <Compile Remove="ClientApp\app\components\fetchdata\**" />
+    <Compile Remove="ClientApp\app\components\home\**" />
+    <Compile Remove="Models\Code_First_DB\**" />
+    <Compile Remove="Models\DB\**" />
+    <Compile Remove="Persistence\**" />
+    <Content Remove="ClientApp\**" />
+    <Content Remove="Models\Code_First_DB\**" />
+    <Content Remove="Models\DB\**" />
+    <Content Remove="Persistence\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\backup\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\counter\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\fetchdata\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\home\**" />
+    <EmbeddedResource Remove="Models\Code_First_DB\**" />
+    <EmbeddedResource Remove="Models\DB\**" />
+    <EmbeddedResource Remove="Persistence\**" />
+    <None Remove="ClientApp\app\components\backup\**" />
+    <None Remove="ClientApp\app\components\counter\**" />
+    <None Remove="ClientApp\app\components\fetchdata\**" />
+    <None Remove="ClientApp\app\components\home\**" />
+    <None Remove="Models\Code_First_DB\**" />
+    <None Remove="Models\DB\**" />
+    <None Remove="Persistence\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Delatnost.cs" />
+    <Compile Remove="Models\InfoOfUpdates.cs" />
+    <Compile Remove="Models\Kategorija.cs" />
+    <Compile Remove="Models\Mesto.cs" />
+    <Compile Remove="Models\Nabavke.cs" />
+    <Compile Remove="Models\NabavkeUpdate.cs" />
+    <Compile Remove="Models\OblikOrg.cs" />
+    <Compile Remove="Models\OblikSvoj.cs" />
+    <Compile Remove="Models\Opstina.cs" />
+    <Compile Remove="Models\UpdateDblogs.cs" />
+    <Compile Remove="Models\VrstaPostupka.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Programing_CSharp\CirToLat_NetStandard2\CirToLat_NetStandard2\CirToLat_NetStandard2.csproj" />
+    <ProjectReference Include="..\NabavkeSolutionCore.Data\NabavkeSolutionCore.Data.csproj" />
+  </ItemGroup>
+
+  <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+
+    <!-- In development, the dist files won't exist on the first run or when cloning to
+         a different machine, so rebuild them if not already present. -->
+    <Message Importance="high" Text="Performing first-run Webpack build..." />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec Command="npm install" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" /> <!--Temporali Fix of webpack code 2 oginal: env.prod-->
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

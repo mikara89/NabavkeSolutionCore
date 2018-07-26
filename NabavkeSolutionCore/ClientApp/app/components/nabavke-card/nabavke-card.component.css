@@ -1,0 +1,77 @@
+div.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    background-color: #4189C7;
+    margin: 10px;
+    border-radius: 5px;
+}
+.card-block {
+    background-color: white;
+    padding: 5px;
+}
+.card-header.col-sm-4.datum {
+    padding-right: 25px;
+    text-align: right;
+    color: white; 
+}
+.card-header.col-sm-4.mesto { 
+    padding-left: 25px;
+    text-align: left;
+    color: white;
+
+}
+.card-header.col-sm-4.sifra {
+    color: white;
+    text-align: start;
+}
+div.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.301), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+}
+img{
+    width: 40px;
+    height: 40px;
+}
+img.active{
+    opacity:block;
+}
+.link-padding{
+    margin-right: 50px;
+}
+
+/* block discription*/
+span.b{
+    background: none repeat scroll 0 0 #F8F8F8;
+    border: 5px solid #DFDFDF;
+    color: #717171;
+    font-size: 13px;
+    height: 30px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: -80px;
+    left:-30px;
+    display:none;
+    padding:0 20px;
+
+}
+span.b:after{
+    content:'';
+    position:absolute;
+    bottom:-10px;
+    width:10px;
+    height:10px;
+    border-bottom:5px solid #dfdfdf;
+    border-right:5px solid #dfdfdf;
+    background:#f8f8f8;
+    left:50%;
+    margin-left:-5px;
+    -moz-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+img:hover span{
+    display:block;
+}

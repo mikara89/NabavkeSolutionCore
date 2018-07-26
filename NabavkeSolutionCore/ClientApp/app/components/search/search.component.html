@@ -1,0 +1,18 @@
+<div class="body-search row" [class.hided]="!isToggleSearch">
+    <div class="fab">
+        <span class="glyphicon glyphicon-search " [ngClass]="{
+            'glyphicon-search':!isToggleSearch,
+            'glyphicon-remove':isToggleSearch
+        }"
+        (click)="toggleSearch()"></span>
+    </div>
+    <input [class.hideMe]="!isToggleSearch"
+        #searchRef
+        type="text" 
+        [(ngModel)]="search"
+        name="search" 
+        (keyup)="onSearch()"  
+        class="fab-input" 
+        placeholder="Search" 
+        id="txtSearch"/>       
+</div>

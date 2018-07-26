@@ -1,0 +1,27 @@
+
+<div class='main-nav'>
+  <div class='navbar navbar-inverse'>
+      <div class='navbar-header'>
+          <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+              <span class='sr-only'>Toggle navigation</span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+          </button>
+          <a class='navbar-brand row' [routerLink]="['/']">
+            <img src="https://lh3.googleusercontent.com/ezvkNMhKX2n6jsEXpkZpksd-LcdXe4i5Ex64eUI02wS1XnGwJs_ACAuNkqrsMOx6J2M=w300-rw" class="img-responsive .col-lg-6 col-sm-6" alt="">
+            <p class="col-lg-6 col-sm-6">HSolution</p>
+        </a>
+      </div>
+      <div class='clearfix'></div>
+      <div class='navbar-collapse collapse'>
+          <ul class='nav navbar-nav'>
+              <li *ngFor="let vrsta of vrste" [routerLinkActive]="['link-active']">
+                <a [routerLink]="['/nabavke',vrsta.naziv]" class="{{vrsta.naziv}}">
+                    <span class='glyphicon glyphicon-home'></span>{{vrsta.naziv}}                         {{vrsta.count}}
+                </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>

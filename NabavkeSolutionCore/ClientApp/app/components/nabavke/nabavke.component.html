@@ -1,0 +1,30 @@
+
+  {{nab.length}}
+  <nabavke-card *ngFor="let nabavka of nab" [nabavka]="nabavka" [color]="vrsta.color"></nabavke-card>
+<!-- <div class="card" *ngFor="let nabavka of nab" [style.backgroundColor]="vrsta.color">
+  <div class="row">
+      <h4 class="card-header col-sm-4 mesto"><strong><i>Место:</i></strong> {{nabavka.mesto.naziv}} {{nabavka.vrstaPredmeta}}</h4>
+      <h4 class="card-header col-sm-4 sifra"><strong><i>Шифра набавке:</i></strong> {{nabavka.sifraNabavke}}</h4>
+      <h4 class="card-header col-sm-4 datum"><strong><i>Датум:</i></strong> {{nabavka.datumPoslednjeIzmene | date:'shortDate'}}</h4>
+  </div>
+  <div class="card-block">
+      <div class="row">
+          <div class="col-sm-9">
+              <h4 class="card-title"><strong><i>Наручилац:</i></strong> {{nabavka.nazivNarucioca}}</h4>
+              <p class="card-text">{{nabavka.nazivDokumenta}}</p>
+          </div>
+      </div>
+      <a href="{{nabavka.link}}" class="btn btn-primary link-padding" [style.backgroundColor]="vrsta.color">Link</a>
+      <img src="https://i.imgur.com/mW52VLz.png" alt="Позив за подношење понуде" *ngIf="nabavka.pozivZaPodnosenjePonuda>0 || nabavka.pregovarackiBezPonuda>0">
+      <span class="b">some text here ?</span>
+      <img src="https://i.imgur.com/cz87IHm.png" alt="Конкурсна документација" *ngIf="nabavka.konkursnaDokumentacija>0">
+      <img src="https://i.imgur.com/4vMRqRL.png" alt="Обавештење о продужетку рока" *ngIf="nabavka.obavestenjeOProduzenjuRoka>0">
+      <img src="https://i.imgur.com/AkHT9Bd.png" alt="Одлука о обустави поступка" *ngIf="nabavka.odlukaOObustaviPostupka>0">
+      <img src="https://i.imgur.com/0b6kd3q.png" alt="Одлука о наставку поступка" *ngIf="nabavka.odlukaONastavkuPostupka>0">
+      <img src="https://i.imgur.com/tR6QOey.png" alt="Обавештење о поништењу поступка" *ngIf="nabavka.obavestenjeOPonistenjuPostupka>0">
+      <img src="https://i.imgur.com/Pv7NdzG.png" alt="Одлука о додели уговора" *ngIf="nabavka.odlukaODodeliUgovora>0">
+      <img src="https://i.imgur.com/X65MmcO.png" alt="Обавештење о заштити права" *ngIf="nabavka.obavestenjeOZastitiPrava>0">
+      <img src="https://i.imgur.com/UircCb6.png" alt="Обавештење о закључењу уговора" *ngIf="nabavka.obavestenjeOZakljucenomUgovoru>0">
+  </div>
+</div> -->
+<div *ngIf="isLoading" class="loader" [ngStyle]="{'border-top-color': vrsta.color}"></div>
